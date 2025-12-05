@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+form{
+    background: #fcc07e;
+    width : 50%;
+    margin-left: 20%;
+}
+form h1{
+    padding : 10px;
+}
+div {
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+label {
+    display: inline-block;
+    width: 150px;
+
+}
+input,select, textarea{
+    width : 30vw;
+    padding: 10px;
+    border-width:5px;
+    -webkit-box-sizing: content-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: content-box;    /* Firefox, other Gecko */
+    box-sizing: content-box;
+
+}

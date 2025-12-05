@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filmothèque</title>
+    <link rel="stylesheet" th:href="@{/css/demo-form.css}">
+    <link rel="stylesheet" th:href="@{/css/general.css}">
+</head>
+<body>
+    <header data-th-replace="~{fragments/fragment-header :: frag-entete }"></header>
+    <main>
+        <form>
+            <h1>Détails du film</h1>
+            <div class="responsive-form">
+                <div>
+                    <label for="inputGenre">Genre</label>
+                    <input id="inputGenre" type="text" name="nom" th:value="${film.getGenre().getTitre()}">
+                </div>
+                <div>
+                    <label for="inputAnnee">Année</label>
+                    <input id="inputAnnee" type="text" name="nom" th:value="${film.getAnnee()}">
+                </div>
+                <div>
+                    <label for="inputTitre">Titre</label>
+                    <input id="inputTitre" type="text" name="nom" th:value="${film.getTitre()}">
+                </div>
+                <div>
+                    <label for="inputReal">Réalisateur</label>
+                    <input id="inputReal" type="text" name="nom" th:value="${film.getRealisateur().getPrenom() + ' ' + film.getRealisateur().getNom()}">
+                </div>
+                <div>
+                    <label for="inputDuree">Durée</label>
+                    <input id="inputDuree" type="text" name="nom" th:value="${film.getDuree()}">
+                </div>
+                <div>
+                    <label for="inputActeurs">Acteurs</label>
+                    <select id="inputActeurs" name="acteurs" multiple>
+                        <option th:each="item : ${film.getActeurs()}" th:text="${item.getPrenom() + ' ' + item.getNom()}"></option>
+                    </select>
+                </div>
+                <div>
+                    <label for="inputSynopsis">Synopsis</label>
+                    <textarea id="inputSynopsis" name="synopsis" th:text="${film.getSynopsis()}">
+
+                </textarea>
+
+                </div>
+
+
+
+
+            </div>
+        </form>
+    </main>
+</body>
+</html>
