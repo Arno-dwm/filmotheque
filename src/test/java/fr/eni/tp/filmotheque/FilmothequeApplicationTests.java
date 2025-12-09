@@ -63,4 +63,38 @@ public class FilmothequeApplicationTests {
 
         }
     }
+
+    @Test
+    @DisplayName("test de l'ajout d'un genre")
+    void testSaveGenre(){
+        //AAA
+        //Arrange = Préparation du test
+
+        Genre genre = new Genre(12, "Horreur");
+
+        //Act = Appeler la méthode que l'on veut tester
+        Genre genreResultat = genreRepository.saveGenre(genre);
+
+        //Assert
+        assertNotNull(genreResultat);
+
+        //Remise à zéro de la BDD
+        genreRepository.deleteGenre(12);
+    }
+
+    @Test
+    @DisplayName("test MaJ libelle genre")
+    void testUpdateGenre(){
+        //Genre Animation : 1
+        Genre genreAMaj = genreRepository.findGenreById(1L);
+        //act
+        genreRepository.updateGenreLibelle((int) genreRepository.findGenreById(1L).getId(), "Nouveau libelle");
+
+        //Recharger  l'objet java après update pour s'assurer qu'il reflète l'état de la base
+        //genreAMaj = genreRepository.findGenreById(1L);
+
+        //Assert
+        assertEquals("Nouveau libelle", genreRepository.findGenreById(1L).getTitre());
+
+    }
 }

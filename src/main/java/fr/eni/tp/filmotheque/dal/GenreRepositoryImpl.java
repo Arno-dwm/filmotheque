@@ -4,9 +4,11 @@ import fr.eni.tp.filmotheque.bo.Genre;
 import fr.eni.tp.filmotheque.exception.GenreNotFound;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -40,6 +42,43 @@ public class GenreRepositoryImpl implements GenreRepository {
             throw new GenreNotFound();
         }
         return genre;
+    }
+
+    @Override
+    public Genre saveGenre(Genre genre) {
+        String sql = "INSERT INTO Genres (id, libelle) VALUES (?, ?)";
+        PreparedStatementSetter pss = new PreparedStatementSetter() {
+            @Override public void setValues(PreparedStatement ps) throws SQLException {
+                ps.setLong(1, genre.getId());
+                ps.setString(2, genre.getTitre());
+            } };
+
+        jdbcTemplate.update(sql, pss );
+
+        return genre;
+
+    }
+
+
+    @Override
+    public void updateGenreLibelle(int id, String libelle) {
+        String  sql = "UPDATE Genres SET libelle = ? WHERE id = ?";
+
+        PreparedStatementSetter pss = new PreparedStatementSetter() {
+            @Override public void setValues(PreparedStatement ps) throws SQLException {
+                ps.setString(1, libelle);
+                ps.setLong(2, id);
+            }
+        };
+
+        jdbcTemplate.update(sql, pss);
+
+    }
+
+    @Override
+    public void deleteGenre(int id) {
+        String sql = "delete from Genres where id = ?";
+        jdbcTemplate.update(sql, id);
     }
 
     class GenreRowMapper implements RowMapper<Genre> {

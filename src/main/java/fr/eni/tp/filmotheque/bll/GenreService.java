@@ -1,13 +1,11 @@
-package fr.eni.tp.filmotheque.dal;
+package fr.eni.tp.filmotheque.bll;
 
 import fr.eni.tp.filmotheque.bo.Genre;
 
 import java.util.List;
 
-public interface GenreRepository {
+public interface GenreService {
     List<Genre> findAllGenres();
     Genre findGenreById(Long id);
     Genre saveGenre(Genre genre);
-    void deleteGenre(int id);
-    void updateGenreLibelle(int id, String libelle);
 }

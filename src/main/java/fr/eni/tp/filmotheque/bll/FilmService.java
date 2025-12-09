@@ -9,9 +9,12 @@ import java.util.List;
 public interface FilmService {
     List<Film> consulterFilms();
     Film consulterFilmParId(long id);
+
+    //Remplacée par les methodes dans GenreService
     List<Genre> consulterGenres();
-    List<Participant> consulterParticipants();
     Genre consulterGenreParId(long id);
+
+    List<Participant> consulterParticipants();
     Participant consulterParticipantParId(long id);
     void creerFilm(Film film);
 }
