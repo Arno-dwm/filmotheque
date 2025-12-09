@@ -7,4 +7,7 @@ import java.util.List;
 
 public interface FilmRepository {
     List<Film> findAllFilms();
+    Film findFilmById(long id);
+    Genre findGenreById(long id);
+    void creerFilm(Film film);
 }

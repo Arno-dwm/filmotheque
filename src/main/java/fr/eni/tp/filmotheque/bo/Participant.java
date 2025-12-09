@@ -8,7 +8,7 @@ public class Participant extends Personne{
 
     }
 
-    public Participant(long id, String nom, String prenom){
+    public Participant(int id, String nom, String prenom){
         super(id, nom,prenom);
     }
 

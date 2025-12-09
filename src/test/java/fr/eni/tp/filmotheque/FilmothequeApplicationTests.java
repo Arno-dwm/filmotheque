@@ -41,7 +41,7 @@ public class FilmothequeApplicationTests {
     void testFindGenreByIdCasIdExistant() {
         Genre genre=null;
         try {
-            genre = genreRepository.findGenreById(1L);
+            genre = genreRepository.findGenreById(1);
         } catch (GenreNotFound ex) {
             // TODO Auto-generated catch block
             ex.printStackTrace();
@@ -54,7 +54,7 @@ public class FilmothequeApplicationTests {
     void testFindPizzaByIdCasIdInconnu() {
         Genre genre=null;
         try {
-            genre = genreRepository.findGenreById(99L);
+            genre = genreRepository.findGenreById(99);
 
             //Fail - Echec du test
             fail();
@@ -86,15 +86,15 @@ public class FilmothequeApplicationTests {
     @DisplayName("test MaJ libelle genre")
     void testUpdateGenre(){
         //Genre Animation : 1
-        Genre genreAMaj = genreRepository.findGenreById(1L);
+        Genre genreAMaj = genreRepository.findGenreById(1);
         //act
-        genreRepository.updateGenreLibelle((int) genreRepository.findGenreById(1L).getId(), "Nouveau libelle");
+        genreRepository.updateGenreLibelle(genreRepository.findGenreById(1).getId(), "Nouveau libelle");
 
         //Recharger  l'objet java après update pour s'assurer qu'il reflète l'état de la base
         //genreAMaj = genreRepository.findGenreById(1L);
 
         //Assert
-        assertEquals("Nouveau libelle", genreRepository.findGenreById(1L).getTitre());
+        assertEquals("Nouveau libelle", genreRepository.findGenreById(1).getTitre());
 
     }
 }

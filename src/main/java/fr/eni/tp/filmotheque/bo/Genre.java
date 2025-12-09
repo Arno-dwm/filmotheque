@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Genre implements Serializable {
     private static final long serialVersionUID = 1L;
-    private long id;
+    private int id;
     private String titre;
 
     public Genre(){
@@ -14,7 +14,7 @@ public class Genre implements Serializable {
     public Genre(String titre) {
         this.titre = titre;
     }
-    public Genre(long id, String titre) {
+    public Genre(int id, String titre) {
         this.titre = titre;
         this.id = id;
     }
@@ -40,10 +40,10 @@ public class Genre implements Serializable {
     }
 
     //Getters and setters
-    public long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
     public String getTitre() {

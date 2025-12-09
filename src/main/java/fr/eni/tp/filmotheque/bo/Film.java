@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class Film implements Serializable {
     private static final long serialVersionUID = 1L;
-    private long id;
+    private int id;
 
     @NotBlank
     private String titre;
@@ -27,7 +27,7 @@ public class Film implements Serializable {
         //autre endroit pour initialiser les listes, doit aussi être ajouté aux autres constructeurs
     };
 
-    public Film(long id, String titre, int annee, int duree, String synopsis) {
+    public Film(int id, String titre, int annee, int duree, String synopsis) {
         this(titre, annee, duree, synopsis); //appel au constructeur avec ces paramètres
         this.id = id;
     }
@@ -69,11 +69,11 @@ public class Film implements Serializable {
     }
 
     //Getters and setters
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

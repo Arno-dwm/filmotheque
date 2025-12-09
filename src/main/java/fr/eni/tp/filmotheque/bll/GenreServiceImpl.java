@@ -22,7 +22,7 @@ public class GenreServiceImpl implements GenreService{
     }
 
     @Override
-    public Genre findGenreById(Long id) {
+    public Genre findGenreById(int id) {
         return genreRepository.findGenreById(id);
     }
 

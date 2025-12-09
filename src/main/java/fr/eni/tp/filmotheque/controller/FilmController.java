@@ -1,6 +1,8 @@
 package fr.eni.tp.filmotheque.controller;
 
 import fr.eni.tp.filmotheque.bll.FilmService;
+import fr.eni.tp.filmotheque.bll.GenreService;
+import fr.eni.tp.filmotheque.bll.ParticipantService;
 import fr.eni.tp.filmotheque.bo.Film;
 import fr.eni.tp.filmotheque.bo.Genre;
 import fr.eni.tp.filmotheque.bo.Participant;
@@ -23,10 +25,14 @@ import java.util.List;
 @Controller
 public class FilmController {
     private FilmService filmService;
+    private GenreService genreService;
+    private ParticipantService participantService;
 
+    public FilmController(FilmService filmService, GenreService genreService, ParticipantService participantService) {
 
-    public FilmController(FilmService filmService) {
         this.filmService = filmService;
+        this.genreService = genreService;
+        this.participantService = participantService;
     }
 
 
@@ -78,7 +84,7 @@ public class FilmController {
     @ModelAttribute("realisateurs")
     public List<Participant> chargerRealisateurs(){
         System.out.println("Chargement des Participants");
-        return filmService.consulterParticipants();
+        return participantService.consulterParticipants();
     }
 
     //methode post mapping sur FilmDto
@@ -100,19 +106,17 @@ public class FilmController {
         Film film = new Film();
         BeanUtils.copyProperties(filmDto, film);
 
-        System.out.println(filmDto.getIdGenre());
+        System.out.println("FilmDto genre ID" + filmDto.getIdGenre());
 
-        //A verifier corrigé
-        Genre genre = filmService.consulterGenreParId(filmDto.getIdGenre());
-        //Genre genre2 = new Genre(filmDto.getIdGenre());
+
+        Genre genre = genreService.findGenreById(filmDto.getIdGenre());
+        //Genre genre = new Genre(filmDto.getGenreId());
+        System.out.println("Genre ajouté" + genre);
         film.setGenre(genre);
 
 
-        System.out.println("genre: " + filmService.consulterGenres().get(filmDto.getIdGenre()-1));
-        film.setGenre(filmService.consulterGenres().get(filmDto.getIdGenre()-1));
-
-        System.out.println(filmService.consulterParticipantParId(filmDto.getIdReal()));
-        film.setRealisateur(filmService.consulterParticipantParId(filmDto.getIdReal()));
+        Participant real = participantService.consulterParticipantParId(filmDto.getIdReal());
+        film.setRealisateur(real);
 
         //Ajouter film à la liste
         filmService.creerFilm(film);

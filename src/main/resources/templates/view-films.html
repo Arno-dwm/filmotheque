@@ -31,7 +31,7 @@
                 <td th:text="${item.getDuree()}"></td>
 
                 <td th:text="${item.genre.titre}"></td>
-                <!--   <td th:text="${item.realisateur.prenom + ' ' + item.getRealisateur().getNom()}"></td>-->
+                <td th:text="${item.realisateur.prenom + ' ' + item.getRealisateur().getNom()}"></td>
                    <td><a th:href="@{/films/detail(id=${item.getId()})}">Détail</a></td>
 
             </tr>

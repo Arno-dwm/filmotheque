@@ -11,10 +11,11 @@ public interface FilmService {
     Film consulterFilmParId(long id);
 
     //Remplacée par les methodes dans GenreService
-    List<Genre> consulterGenres();
-    Genre consulterGenreParId(long id);
+  //  List<Genre> consulterGenres();
+    //Genre consulterGenreParId(long id);
 
-    List<Participant> consulterParticipants();
-    Participant consulterParticipantParId(long id);
+    //A remplacer par des methodes ParticipantService
+   // List<Participant> consulterParticipants();
+   // Participant consulterParticipantParId(int id);
     void creerFilm(Film film);
 }

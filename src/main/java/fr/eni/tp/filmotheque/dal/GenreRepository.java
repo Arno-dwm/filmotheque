@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface GenreRepository {
     List<Genre> findAllGenres();
-    Genre findGenreById(Long id);
+    Genre findGenreById(int id);
     Genre saveGenre(Genre genre);
     void deleteGenre(int id);
     void updateGenreLibelle(int id, String libelle);

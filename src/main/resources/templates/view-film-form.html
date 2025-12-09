@@ -15,7 +15,7 @@
         <div style="color: red;" th:if="${#fields.hasErrors('*')}" >
             <p th:text="#{index.erreurs}"></p>
         </div>
-    </th:block>
+
         <form th:action="@{/form}" method="POST">
             <h1>Création d'un film [En cours de construction]</h1>
             <div class="responsive-form">
@@ -23,20 +23,20 @@
                     <label for="inputGenre">Genre</label>
                     <select id="inputGenre" name="idGenre">
                         <!--renommer Bean filmServiceBouchon -->
-                        <option data-th-each="genre : ${@filmServiceBouchon.consulterGenres()}" data-th-value="${genre.getId()}" data-th-text="${genre.getTitre()}"></option>
+                        <option data-th-each="genre : ${@genreService.findAllGenres()}" data-th-value="${genre.getId()}" data-th-text="${genre.getTitre()}"></option>
                     </select>
                 </div>
                 <div>
 
                     <label for="inputReal">Réalisateur</label>
                     <select id="inputReal" name="idReal">
-                        <option data-th-each="real : ${realisateurs}" data-th-value="${real.id}" data-th-text="${real.getPrenom() + ' ' + real.nom}"></option>
+                        <option data-th-each="real : ${@participants.consulterParticipants()}" data-th-value="${real.id}" data-th-text="${real.getPrenom() + ' ' + real.nom}"></option>
                     </select>
 
                 </div>
                 <div>
                     <label for="inputTitre">Titre du film</label>
-                    <input type="text" id="inputTitre" name="titre" th:field="*{filmDto.titre}">
+                    <input type="text" id="inputTitre" th:field="*{titre}">
                 </div>
                 <div>
                     <label for="inputAnnee">Année</label>
@@ -54,7 +54,7 @@
                 <button type="submit">Ajouter</button>
             </div>
         </form>
-
+    </th:block>
 </main>
 
 </body>

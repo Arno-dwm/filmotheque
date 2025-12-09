@@ -32,7 +32,7 @@ public class GenreRepositoryImpl implements GenreRepository {
     }
 
     @Override
-    public Genre findGenreById(Long id) {
+    public Genre findGenreById(int id) {
         String sql = "SELECT id, libelle from Genres where id = ?";
         Genre genre = null;
 
@@ -81,15 +81,12 @@ public class GenreRepositoryImpl implements GenreRepository {
         jdbcTemplate.update(sql, id);
     }
 
-    class GenreRowMapper implements RowMapper<Genre> {
+    static class GenreRowMapper implements RowMapper<Genre> {
 
         @Override
         public Genre mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Genre genre = new Genre();
-            genre.setId(Long.parseLong(String.valueOf(rs.getInt("id"))));
-            genre.setTitre(rs.getString("libelle"));
 
-            return genre;
+            return new Genre(rs.getInt("id"), rs.getString("libelle"));
         }
     }
 }
